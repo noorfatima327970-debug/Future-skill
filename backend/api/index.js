@@ -6,7 +6,11 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://future-skill-n54f.vercel.app",
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Database connection ko reuse karne ki koshish
