@@ -1,0 +1,1612 @@
+.timetable-layout {
+  min-height: 100vh;
+  display: flex;
+  background: #f4f6f1;
+  font-family: "Inter", sans-serif;
+  color: #263225;
+}
+
+.timetable-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 260px;
+}
+
+.timetable-content {
+  padding: 34px;
+}
+
+/* Page Header */
+
+.timetable-page-header {
+  margin-bottom: 26px;
+}
+
+.timetable-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #65783f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.timetable-page-header h1 {
+  margin: 0;
+  color: #263225;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 750;
+}
+
+.timetable-page-header p {
+  max-width: 560px;
+  margin: 8px 0 0;
+  color: #7b857e;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Main Card */
+
+.timetable-card {
+  overflow: visible;
+  background: #ffffff;
+  border: 1px solid #e5e9df;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(51, 64, 39, 0.045);
+}
+
+/* Toolbar */
+
+.timetable-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 17px 18px;
+  border-bottom: 1px solid #edf0e9;
+  flex-wrap: wrap;
+}
+
+.timetable-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   VIEW TOGGLE
+========================================= */
+
+.timetable-view-toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid #e3e8db;
+  border-radius: 10px;
+  background: #f1f3ee;
+}
+
+.timetable-view-toggle button {
+  min-height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 0 13px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #687263;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.18s ease;
+}
+
+.timetable-view-toggle button svg {
+  font-size: 14px;
+}
+
+.timetable-view-toggle button.active {
+  background: #65783f;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(101, 120, 63, 0.25);
+}
+
+/* =========================================
+   CUSTOM DROPDOWN
+========================================= */
+
+.timetable-dropdown {
+  position: relative;
+  width: min(430px, 100%);
+  flex: 1 1 300px;
+  max-width: 430px;
+}
+
+.timetable-dropdown-trigger {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 0 14px;
+
+  border: 1px solid #e3e8db;
+  border-radius: 10px;
+
+  background: #fbfcf9;
+
+  font-family: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.18s ease;
+}
+
+.timetable-dropdown-trigger:hover {
+  border-color: #ccd5bd;
+  background: #ffffff;
+}
+
+.timetable-dropdown.open .timetable-dropdown-trigger {
+  border-color: #a8b98c;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(101, 120, 63, 0.07);
+}
+
+.timetable-dropdown-icon {
+  flex: 0 0 auto;
+  color: #8fa077;
+  font-size: 17px;
+}
+
+.timetable-dropdown-trigger span {
+  flex: 1;
+  min-width: 0;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 13px;
+}
+
+.timetable-dropdown-trigger span.placeholder {
+  color: #a3aaa0;
+  font-weight: 600;
+}
+
+.timetable-dropdown-trigger span.has-value {
+  color: #34402f;
+  font-weight: 650;
+}
+
+.timetable-dropdown-clear {
+  flex: 0 0 auto;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #f1f3ee;
+  color: #899284;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.16s ease;
+}
+
+.timetable-dropdown-clear:hover {
+  background: #fbeeee;
+  color: #ad5d5d;
+}
+
+.timetable-dropdown-arrow {
+  flex: 0 0 auto;
+  color: #899284;
+  font-size: 16px;
+
+  transition: transform 0.2s ease;
+}
+
+.timetable-dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.timetable-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  right: 0;
+  z-index: 500;
+
+  max-height: 320px;
+  overflow-y: auto;
+
+  padding: 6px;
+
+  border: 1px solid #e3e8db;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow: 0 12px 34px rgba(30, 39, 26, 0.13);
+
+  animation: timetableFadeIn 0.16s ease;
+}
+
+.timetable-dropdown-option {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 9px 11px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+
+  color: #4d584b;
+
+  cursor: pointer;
+
+  transition: 0.14s ease;
+}
+
+.timetable-dropdown-option:hover {
+  background: #f2f5ed;
+  color: #34402f;
+}
+
+.timetable-dropdown-option.selected {
+  background: #edf2e4;
+  color: #526532;
+  font-weight: 700;
+}
+
+.timetable-dropdown-option .option-name {
+  flex: 1;
+}
+
+.timetable-dropdown-option .option-check {
+  flex: 0 0 auto;
+  color: #526532;
+  font-size: 14px;
+}
+
+.timetable-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.timetable-dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.timetable-dropdown-menu::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: #d7ddcc;
+}
+
+/* Toolbar buttons */
+
+.timetable-periods-button,
+.timetable-print-button {
+  height: 44px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 0 13px;
+
+  border: 1px solid #e3e8db;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #65783f;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.timetable-periods-button svg,
+.timetable-print-button svg {
+  font-size: 15px;
+}
+
+.timetable-periods-button:hover:not(:disabled),
+.timetable-print-button:hover:not(:disabled) {
+  border-color: #ccd5bd;
+  background: #f7f9f3;
+}
+
+/* Reset button — halka red touch */
+
+.timetable-reset-button {
+  color: #a06f5e;
+}
+
+.timetable-reset-button:hover:not(:disabled) {
+  border-color: #e7d5cd;
+  background: #fdf3f0;
+}
+
+.timetable-periods-button:disabled,
+.timetable-print-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.timetable-refresh {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e3e8db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #65783f;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.timetable-refresh:hover:not(:disabled) {
+  border-color: #ccd5bd;
+  background: #f7f9f3;
+}
+
+.timetable-refresh:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.spin {
+  animation: timetableSpin 0.8s linear infinite;
+}
+
+@keyframes timetableSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error / Success */
+
+.timetable-error {
+  margin: 15px 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 13px;
+  border: 1px solid #ead2d2;
+  border-radius: 8px;
+  background: #fff5f5;
+  color: #a44747;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.timetable-error button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #a44747;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.timetable-error button:hover {
+  background: #ffe9e9;
+}
+
+.timetable-success {
+  margin: 15px 18px 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 13px;
+  border: 1px solid #d5e4c4;
+  border-radius: 8px;
+  background: #f0f6e8;
+  color: #4d6b2f;
+  font-size: 12px;
+  font-weight: 650;
+
+  animation: timetableFadeIn 0.25s ease;
+}
+
+.timetable-success svg {
+  flex: 0 0 auto;
+  font-size: 15px;
+}
+
+@keyframes timetableFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Body */
+
+.timetable-body {
+  padding: 20px 18px 24px;
+}
+
+/* =========================================
+   TIMETABLE GRID
+========================================= */
+
+.timetable-grid-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.timetable-grid {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: separate;
+  border-spacing: 6px;
+}
+
+.timetable-grid th {
+  padding: 10px 12px;
+
+  background: #fafbf8;
+  border-radius: 9px;
+
+  color: #7d8679;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.timetable-grid th.period-col {
+  text-align: left;
+}
+
+.timetable-grid td {
+  vertical-align: top;
+}
+
+/* Period column */
+
+.timetable-grid td.period-col {
+  min-width: 140px;
+  padding: 9px 12px;
+
+  background: #f7f9f4;
+  border-radius: 10px;
+}
+
+.timetable-grid td.period-col strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2d382b;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.timetable-grid td.period-col span {
+  display: block;
+  margin-top: 3px;
+  color: #97a093;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* NOW badge + current highlight */
+
+.timetable-grid td.period-col.current {
+  background: #eef4e0;
+  box-shadow: inset 0 0 0 2px #a8b98c;
+}
+
+.now-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 1px 7px;
+
+  border-radius: 20px;
+
+  background: #65783f;
+  color: #ffffff;
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* Break period column */
+
+.timetable-grid td.period-col.break {
+  background: #f4f1e8;
+}
+
+.timetable-grid td.period-col.break strong {
+  color: #8a8265;
+}
+
+.timetable-grid td.period-col.break.current {
+  background: #efe9d6;
+  box-shadow: inset 0 0 0 2px #cfc4a0;
+}
+
+.timetable-grid td.break-cell {
+  background: #faf8f1;
+  border-radius: 10px;
+}
+
+/* Slots */
+
+.slot {
+  width: 100%;
+  min-height: 58px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  padding: 8px 10px;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition: 0.16s ease;
+}
+
+.slot.empty {
+  border: 1.5px dashed #d9e0cd;
+  background: #fdfefa;
+  color: #b4bd9f;
+  font-size: 16px;
+}
+
+.slot.empty:hover {
+  border-color: #a8b98c;
+  background: #f4f7ee;
+  color: #65783f;
+}
+
+/* Teacher view — non-clickable empty */
+
+.slot.empty.static {
+  cursor: default;
+}
+
+.slot.empty.static:hover {
+  border-color: #d9e0cd;
+  background: #fdfefa;
+  color: #b4bd9f;
+}
+
+/* Filled slot — colors inline style se aate hain */
+
+.slot.filled {
+  border: 1px solid #dfe7d2;
+  text-align: center;
+}
+
+.slot.filled:hover {
+  filter: brightness(0.97);
+  box-shadow: 0 3px 10px rgba(51, 64, 39, 0.12);
+}
+
+.slot.filled strong {
+  font-size: 12px;
+  font-weight: 750;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.slot.filled span {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.85;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.slot.skeleton {
+  border: 0;
+  background: linear-gradient(
+    100deg,
+    #f0f2ec 40%,
+    #f8faf5 50%,
+    #f0f2ec 60%
+  );
+  background-size: 200% 100%;
+
+  animation: timetableShimmer 1.2s linear infinite;
+
+  cursor: default;
+}
+
+@keyframes timetableShimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Empty states */
+
+.timetable-empty {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.timetable-empty-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 13px;
+  border-radius: 14px;
+  background: #edf2e4;
+  color: #65783f;
+  font-size: 23px;
+}
+
+.timetable-empty h3 {
+  margin: 0;
+  color: #34402f;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.timetable-empty p {
+  max-width: 380px;
+  margin: 6px 0 0;
+  color: #8a9286;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.timetable-empty-button {
+  margin-top: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  min-height: 38px;
+  padding: 0 14px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #65783f;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.timetable-quick-classes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  max-width: 520px;
+}
+
+.timetable-quick-classes button {
+  height: 34px;
+  padding: 0 13px;
+  border: 1px solid #e0e6d8;
+  border-radius: 20px;
+  background: #ffffff;
+  color: #596452;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.timetable-quick-classes button:hover {
+  border-color: #65783f;
+  background: #65783f;
+  color: #ffffff;
+}
+
+/* =========================================
+   MODALS
+========================================= */
+
+.timetable-modal-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(28, 35, 25, 0.48);
+  backdrop-filter: blur(3px);
+}
+
+.timetable-modal {
+  width: min(460px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 20px 55px rgba(30, 39, 26, 0.2);
+
+  animation: timetableFadeIn 0.2s ease;
+}
+
+.timetable-modal.periods-modal {
+  width: min(680px, 100%);
+}
+
+.timetable-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid #edf0e9;
+}
+
+.timetable-modal-header span {
+  display: block;
+  margin-bottom: 5px;
+  color: #65783f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.timetable-modal-header h2 {
+  margin: 0;
+  color: #2b3629;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.timetable-modal-header p {
+  margin: 5px 0 0;
+  color: #8a9286;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.timetable-modal-close {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: #f4f6f1;
+  color: #737d6f;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.timetable-modal-close:hover {
+  background: #e9eee2;
+  color: #526532;
+}
+
+/* =========================================
+   PERIODS MODAL
+========================================= */
+
+.periods-modal-body {
+  padding: 20px 24px 24px;
+}
+
+.period-add-form {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr auto;
+  gap: 8px;
+
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #edf0e9;
+}
+
+.period-add-form input {
+  height: 40px;
+  padding: 0 11px;
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+  outline: 0;
+  background: #ffffff;
+  color: #34402f;
+  font-family: inherit;
+  font-size: 12px;
+  transition: 0.18s ease;
+}
+
+.period-add-form input:focus {
+  border-color: #9bab79;
+  box-shadow: 0 0 0 3px rgba(101, 120, 63, 0.08);
+}
+
+.period-add-form button {
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 0 13px;
+
+  border: 1px solid #65783f;
+  border-radius: 8px;
+
+  background: #65783f;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.period-add-form button:hover:not(:disabled) {
+  background: #526532;
+}
+
+.period-add-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.periods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.period-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 9px 9px 9px 13px;
+
+  border: 1px solid #e0e6d8;
+  border-radius: 10px;
+
+  background: #f7f9f4;
+}
+
+.period-row.break {
+  background: #f4f1e8;
+  border-color: #e5e0d0;
+}
+
+.period-row.editing {
+  border-color: #a8b98c;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(101, 120, 63, 0.07);
+
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr auto;
+  gap: 8px;
+}
+
+.period-row.editing input {
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid #dfe5d9;
+  border-radius: 7px;
+  outline: 0;
+  background: #ffffff;
+  color: #34402f;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.period-row.editing input:focus {
+  border-color: #9bab79;
+}
+
+.period-row-info {
+  min-width: 0;
+}
+
+.period-row-info strong {
+  display: block;
+  color: #2d382b;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.period-row-info span {
+  display: block;
+  margin-top: 2px;
+  color: #97a093;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.period-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.period-row-actions button {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 7px;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.18s ease;
+}
+
+.period-row-actions .period-edit {
+  background: transparent;
+  color: #97a093;
+}
+
+.period-row-actions .period-edit:hover:not(:disabled) {
+  background: #edf2e4;
+  color: #526532;
+}
+
+.period-row-actions .period-delete {
+  background: transparent;
+  color: #97a093;
+}
+
+.period-row-actions .period-delete:hover:not(:disabled) {
+  background: #fff0f0;
+  color: #ad5d5d;
+}
+
+.period-row-actions .period-save {
+  background: #65783f;
+  color: #ffffff;
+}
+
+.period-row-actions .period-save:hover:not(:disabled) {
+  background: #526532;
+}
+
+.period-row-actions .period-cancel {
+  background: #f1f3ee;
+  color: #70796b;
+}
+
+.period-row-actions .period-cancel:hover:not(:disabled) {
+  background: #e6e9e1;
+}
+
+.period-row-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.periods-loading {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7b857e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.periods-empty {
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+.periods-empty p {
+  margin: 0;
+  color: #8a9286;
+  font-size: 12px;
+}
+
+.periods-empty button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  min-height: 38px;
+  padding: 0 14px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #65783f;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.periods-empty button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================================
+   SLOT FORM MODAL
+========================================= */
+
+.timetable-form {
+  padding: 20px 24px 24px;
+}
+
+.timetable-form-error {
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  border: 1px solid #ead2d2;
+  border-radius: 8px;
+  background: #fff5f5;
+  color: #a44747;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Conflict warning */
+
+.timetable-conflict-warning {
+  margin-bottom: 15px;
+  padding: 12px 13px;
+
+  border: 1px solid #f0e0b8;
+  border-radius: 8px;
+
+  background: #fdf8ea;
+
+  animation: timetableFadeIn 0.2s ease;
+}
+
+.timetable-conflict-warning p {
+  margin: 0 0 10px;
+
+  color: #8a6d2f;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.timetable-conflict-warning p strong {
+  color: #6d551f;
+}
+
+.conflict-force-button {
+  min-height: 34px;
+
+  padding: 0 13px;
+
+  border: 1px solid #c9a84c;
+  border-radius: 7px;
+
+  background: #e9c46a;
+  color: #4d3c0f;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.18s ease;
+}
+
+.conflict-force-button:hover:not(:disabled) {
+  background: #dfb94f;
+}
+
+.conflict-force-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Copy info box */
+
+.copy-info {
+  padding: 11px 13px;
+
+  border: 1px solid #e3e8db;
+  border-radius: 8px;
+
+  background: #f7f9f4;
+
+  color: #596452;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.copy-info strong {
+  color: #3d4c2a;
+}
+
+.timetable-form-group {
+  margin-bottom: 15px;
+}
+
+.timetable-form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #4d584b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.timetable-form-group label span {
+  color: #b55d5d;
+}
+
+.timetable-form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 0 11px;
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+  outline: 0;
+  background: #ffffff;
+  color: #34402f;
+  font-family: inherit;
+  font-size: 13px;
+  transition: 0.18s ease;
+}
+
+.timetable-form-group select:focus {
+  border-color: #9bab79;
+  box-shadow: 0 0 0 3px rgba(101, 120, 63, 0.08);
+}
+
+.timetable-form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #a44747;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.timetable-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  margin-top: 20px;
+  padding-top: 17px;
+  border-top: 1px solid #edf0e9;
+}
+
+.timetable-form-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+}
+
+.timetable-form-footer button {
+  min-height: 40px;
+  padding: 0 15px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.timetable-delete-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  border: 1px solid #f0dddd;
+  background: #fff8f8;
+  color: #ad5d5d;
+}
+
+.timetable-delete-button:hover:not(:disabled) {
+  background: #fff0f0;
+}
+
+.timetable-cancel-button {
+  border: 1px solid #dfe5d9;
+  background: #ffffff;
+  color: #667061;
+}
+
+.timetable-cancel-button:hover:not(:disabled) {
+  background: #f7f8f5;
+}
+
+.timetable-save-button {
+  border: 1px solid #65783f;
+  background: #65783f;
+  color: #ffffff;
+}
+
+.timetable-save-button:hover:not(:disabled) {
+  background: #526532;
+}
+
+.timetable-form-footer button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================================
+   DELETE / RESET MODAL
+========================================= */
+
+.timetable-delete-modal {
+  width: min(400px, 100%);
+  padding: 26px;
+  border-radius: 15px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 20px 55px rgba(30, 39, 26, 0.2);
+
+  animation: timetableFadeIn 0.2s ease;
+}
+
+.timetable-delete-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 13px;
+  border-radius: 13px;
+  background: #fff1f1;
+  color: #ad5d5d;
+  font-size: 20px;
+}
+
+.timetable-delete-modal h2 {
+  margin: 0;
+  color: #303a2e;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.timetable-delete-modal p {
+  margin: 8px 0 18px;
+  color: #818980;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.timetable-delete-modal p strong {
+  color: #4d574a;
+}
+
+.timetable-delete-actions {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+}
+
+.timetable-delete-actions button {
+  min-height: 38px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.timetable-delete-actions button:first-child {
+  border: 1px solid #dfe5d9;
+  background: #ffffff;
+  color: #667061;
+}
+
+.timetable-delete-actions .confirm-delete {
+  border: 1px solid #ad5d5d;
+  background: #ad5d5d;
+  color: #ffffff;
+}
+
+.timetable-delete-actions .confirm-delete:hover:not(:disabled) {
+  background: #984d4d;
+}
+
+.timetable-delete-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================================
+   PRINT — HIDDEN ON SCREEN
+========================================= */
+
+.timetable-print-section {
+  display: none;
+}
+
+/* =========================================
+   PRINT LAYOUT
+========================================= */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  html,
+  body,
+  #root {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  .timetable-layout {
+    min-height: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .timetable-layout > :not(.timetable-print-section) {
+    display: none !important;
+  }
+
+  .timetable-print-section {
+    display: block !important;
+    width: 100%;
+
+    color: #293528;
+    font-size: 10pt;
+    line-height: 1.4;
+  }
+
+  .timetable-print-header {
+    text-align: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #65783f;
+  }
+
+  .timetable-print-header h1 {
+    margin: 0;
+    font-size: 17pt;
+    font-weight: 800;
+    color: #293528;
+    letter-spacing: 0.3px;
+  }
+
+  .timetable-print-subtitle {
+    margin: 6px 0 0;
+    font-size: 12pt;
+    font-weight: 700;
+    color: #65783f;
+  }
+
+  .timetable-print-table {
+    width: 100%;
+    margin-top: 14px;
+    border-collapse: collapse;
+  }
+
+  .timetable-print-table th,
+  .timetable-print-table td {
+    padding: 7px 8px;
+    border: 1px solid #aab3a3;
+
+    text-align: left;
+    vertical-align: top;
+    font-size: 9pt;
+    overflow-wrap: anywhere;
+
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .timetable-print-table th {
+    background: #edf2e6;
+    font-weight: 700;
+  }
+
+  .timetable-print-table td strong {
+    display: block;
+    font-size: 9pt;
+  }
+
+  .timetable-print-table td span {
+    display: block;
+    margin-top: 2px;
+    font-size: 8pt;
+    opacity: 0.85;
+  }
+
+  .timetable-print-table .print-break-row td {
+    background: #f4f1e8 !important;
+    font-weight: 700;
+    color: #8a8265;
+    text-align: center;
+  }
+
+  .timetable-print-table thead {
+    display: table-header-group;
+  }
+
+  .timetable-print-table tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .timetable-print-footer {
+    margin-top: 14px;
+    padding-top: 8px;
+    border-top: 1px solid #cfd6c8;
+    font-size: 9pt;
+    color: #66705f;
+    text-align: right;
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .timetable-main {
+    margin-left: 0;
+  }
+
+  .timetable-content {
+    padding: 28px 22px;
+  }
+}
+
+@media (max-width: 700px) {
+  .timetable-content {
+    padding: 24px 16px;
+  }
+
+  .timetable-page-header h1 {
+    font-size: 28px;
+  }
+
+  .timetable-dropdown {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .timetable-toolbar-actions button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .timetable-view-toggle {
+    width: 100%;
+  }
+
+  .timetable-view-toggle button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .period-add-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .period-row.editing {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .timetable-form-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .timetable-form-footer-right {
+    flex-direction: column;
+  }
+
+  .timetable-form-footer button {
+    width: 100%;
+    justify-content: center;
+  }
+}

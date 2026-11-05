@@ -1,0 +1,1594 @@
+/* =========================================
+   FUTURE SKILL — IT COURSES
+   Olive Green Design (matched with Exams)
+   Standalone: saari attendance-* classes
+   is file me defined hain
+========================================= */
+
+.it-courses-page {
+  min-height: 100vh;
+  background: #f4f6f1;
+  color: #293528;
+  font-family: "Inter", sans-serif;
+  display: flex;
+}
+
+.it-courses-page .attendance-main {
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  margin-left: 260px;
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.it-courses-page .attendance-content {
+  padding: 34px;
+  flex: 1;
+}
+
+.it-courses-page .attendance-mobile-overlay {
+  display: none;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.it-courses-page .attendance-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.it-courses-page .attendance-eyebrow {
+  color: #65783f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.it-courses-page .attendance-page-header h1 {
+  margin-top: 8px;
+  color: #293528;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+}
+
+.it-courses-page .attendance-page-header p {
+  margin-top: 8px;
+  color: #879080;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Primary button (Add Course) */
+.it-courses-page .attendance-add-button {
+  min-height: 44px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 17px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #65783f;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  box-shadow: 0 5px 14px rgba(73, 91, 43, 0.18);
+
+  transition: all 0.2s ease;
+
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.it-courses-page .attendance-add-button:hover:not(:disabled) {
+  background: #596b36;
+  transform: translateY(-1px);
+}
+
+.it-courses-page .attendance-add-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.it-courses-page .attendance-add-button svg {
+  font-size: 18px;
+}
+
+/* =========================================
+   SUMMARY STATS
+========================================= */
+
+.it-courses-page .attendance-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 28px;
+}
+
+.it-courses-page .attendance-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 16px 18px;
+
+  border: 1px solid #e1e6dc;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 3px 12px rgba(45, 60, 32, 0.025);
+
+  min-width: 0;
+}
+
+.it-courses-page .attendance-stat-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.it-courses-page .attendance-stat-card span {
+  color: #879080;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.it-courses-page .attendance-stat-card strong {
+  display: block;
+  color: #293528;
+  font-size: 20px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.it-courses-page .attendance-stat-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  font-size: 20px;
+}
+
+.it-courses-page .attendance-stat-icon.present {
+  background: #edf2e6;
+  color: #65783f;
+}
+
+.it-courses-page .attendance-stat-icon.absent {
+  background: #f1f4ed;
+  color: #879080;
+}
+
+.it-courses-page .attendance-stat-icon.late {
+  background: #edf2e6;
+  color: #65783f;
+}
+
+/* =========================================
+   MAIN CARD + TOOLBAR
+========================================= */
+
+.it-courses-page .attendance-card {
+  overflow: hidden;
+
+  border: 1px solid #e1e6dc;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 3px 12px rgba(45, 60, 32, 0.025);
+}
+
+.it-courses-page .attendance-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 18px 21px;
+
+  border-bottom: 1px solid #edf0e9;
+  flex-wrap: wrap;
+}
+
+.it-courses-page .attendance-search {
+  width: 340px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 0 13px;
+
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+
+  background: #f8faf6;
+  color: #98a092;
+}
+
+.it-courses-page .attendance-search svg {
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.it-courses-page .attendance-search input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: #34402f;
+
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.it-courses-page .attendance-search input::placeholder {
+  color: #a0a79b;
+}
+
+.it-courses-page .attendance-filters {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.it-courses-page .attendance-filters select {
+  height: 42px;
+  padding: 0 12px;
+
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #fbfcfa;
+  color: #35412f;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.it-courses-page .attendance-filters select:focus {
+  border-color: #9aa982;
+  box-shadow: 0 0 0 3px rgba(101, 120, 63, 0.08);
+}
+
+.it-courses-page .attendance-refresh {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #65783f;
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.it-courses-page .attendance-refresh:hover:not(:disabled) {
+  background: #edf2e6;
+}
+
+.it-courses-page .attendance-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.it-courses-page .attendance-refresh-spin {
+  animation: itc-spin 0.8s linear infinite;
+}
+
+@keyframes itc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   ERROR BANNER
+========================================= */
+
+.it-courses-page .attendance-error {
+  margin: 16px 21px 0;
+
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 0 13px;
+
+  border: 1px solid #eadbd4;
+  border-radius: 8px;
+
+  background: #fbf5f2;
+  color: #916b5e;
+
+  font-size: 12px;
+}
+
+.it-courses-page .attendance-error span {
+  flex: 1;
+}
+
+.it-courses-page .attendance-error button {
+  border: 0;
+
+  display: flex;
+  align-items: center;
+
+  background: transparent;
+  color: #65783f;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   LOADING / EMPTY
+========================================= */
+
+.it-courses-page .attendance-loading {
+  min-height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  color: #90998c;
+
+  font-size: 12px;
+}
+
+.it-courses-page .attendance-loader {
+  width: 32px;
+  height: 32px;
+
+  border: 3px solid #e4e9df;
+  border-top-color: #65783f;
+
+  border-radius: 50%;
+
+  animation: itc-spin 0.8s linear infinite;
+}
+
+.it-courses-page .attendance-empty {
+  min-height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+}
+
+.it-courses-page .attendance-empty-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #edf2e6;
+  color: #65783f;
+
+  font-size: 22px;
+}
+
+.it-courses-page .attendance-empty h3 {
+  margin-top: 13px;
+
+  color: #4a5545;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.it-courses-page .attendance-empty p {
+  max-width: 350px;
+
+  margin-top: 6px;
+
+  color: #9aa293;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.it-courses-page .attendance-empty button {
+  margin-top: 16px;
+
+  min-height: 38px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 0 14px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #65783f;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.it-courses-page .attendance-empty button:hover {
+  background: #596b36;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+
+.it-courses-page .attendance-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.it-courses-page .attendance-table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: collapse;
+}
+
+.it-courses-page .attendance-table th {
+  height: 48px;
+
+  padding: 0 17px;
+
+  background: #fafbf8;
+
+  border-bottom: 1px solid #e7ebe3;
+
+  color: #8b9486;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  letter-spacing: 0.6px;
+
+  white-space: nowrap;
+}
+
+.it-courses-page .attendance-table td {
+  height: 66px;
+
+  padding: 8px 17px;
+
+  border-bottom: 1px solid #edf0e9;
+
+  color: #66705f;
+
+  font-size: 12px;
+
+  vertical-align: middle;
+}
+
+.it-courses-page .attendance-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.it-courses-page .attendance-table tbody tr:hover {
+  background: #fafcf8;
+}
+
+/* Course cell */
+.it-courses-page .attendance-student {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.it-courses-page .attendance-avatar {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #e4ead8;
+  color: #596b36;
+
+  font-size: 16px;
+
+  overflow: hidden;
+}
+
+.it-courses-page .attendance-student > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.it-courses-page .attendance-student strong {
+  color: #35412f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.it-courses-page .attendance-student span {
+  color: #9aa293;
+  font-size: 10px;
+}
+
+/* Fee */
+.it-course-fee {
+  color: #596b36;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Status pills */
+.it-courses-page .attendance-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 6px 11px;
+
+  border-radius: 20px;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.it-courses-page .attendance-status.present {
+  background: #edf2e6;
+  color: #607542;
+}
+
+.it-courses-page .attendance-status.absent {
+  background: #f1eee6;
+  color: #947b55;
+}
+
+/* Actions */
+.it-courses-page .attendance-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.it-courses-page .attendance-actions button {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: background 0.15s ease;
+}
+
+.it-courses-page .attendance-edit-button {
+  background: #edf2e6;
+  color: #65783f;
+}
+
+.it-courses-page .attendance-edit-button:hover {
+  background: #e0e8d4;
+}
+
+.it-courses-page .attendance-delete-button {
+  background: #f8efeb;
+  color: #a06f5e;
+}
+
+.it-courses-page .attendance-delete-button:hover {
+  background: #f2e3dd;
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.it-courses-page .attendance-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 16px 21px;
+}
+
+.it-courses-page .attendance-pagination > span {
+  color: #879080;
+  font-size: 11px;
+}
+
+.it-courses-page .attendance-pagination > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.it-courses-page .attendance-pagination button {
+  min-height: 34px;
+
+  padding: 0 14px;
+
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #596354;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.it-courses-page .attendance-pagination button:hover:not(:disabled) {
+  border-color: #9aa982;
+  color: #65783f;
+}
+
+.it-courses-page .attendance-pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.it-courses-page .attendance-page-number {
+  color: #35412f;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================================
+   MODAL (Add/Edit)
+========================================= */
+
+.it-courses-page .attendance-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(35, 44, 29, 0.48);
+
+  backdrop-filter: blur(3px);
+}
+
+.it-courses-page .attendance-modal {
+  width: min(720px, 100%);
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow: 0 25px 70px rgba(20, 30, 15, 0.2);
+}
+
+.it-courses-page .attendance-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding: 23px 25px;
+
+  border-bottom: 1px solid #edf0e9;
+}
+
+.it-courses-page .attendance-modal-header span {
+  color: #65783f;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.it-courses-page .attendance-modal-header h2 {
+  margin-top: 6px;
+
+  color: #303c2d;
+
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.it-courses-page .attendance-modal-header > button {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #f1f4ed;
+  color: #788170;
+
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+.it-courses-page .attendance-modal-header > button:hover {
+  background: #e7ece1;
+}
+
+/* Form */
+.it-courses-page .attendance-form {
+  padding: 23px 25px 25px;
+}
+
+.it-courses-page .attendance-form-error {
+  margin: 0 0 14px;
+
+  padding: 11px 13px;
+
+  border: 1px solid #eadbd4;
+  border-radius: 8px;
+
+  background: #fbf5f2;
+  color: #916b5e;
+
+  font-size: 12px;
+}
+
+.it-courses-page .attendance-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 17px;
+}
+
+.it-courses-page .attendance-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.it-courses-page .attendance-form-full {
+  grid-column: 1 / -1;
+}
+
+.it-courses-page .attendance-form-group label {
+  color: #596354;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.it-courses-page .attendance-form-group input,
+.it-courses-page .attendance-form-group select,
+.it-courses-page .attendance-form-group textarea {
+  width: 100%;
+
+  padding: 10px 12px;
+
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #fbfcfa;
+  color: #35412f;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.it-courses-page .attendance-form-group textarea {
+  resize: vertical;
+  min-height: 74px;
+}
+
+.it-courses-page .attendance-form-group input:focus,
+.it-courses-page .attendance-form-group select:focus,
+.it-courses-page .attendance-form-group textarea:focus {
+  border-color: #9aa982;
+  box-shadow: 0 0 0 3px rgba(101, 120, 63, 0.08);
+  background: #ffffff;
+}
+
+.it-courses-page .attendance-form-group input:disabled,
+.it-courses-page .attendance-form-group select:disabled,
+.it-courses-page .attendance-form-group textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Modal footer */
+.it-courses-page .attendance-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+
+  margin-top: 23px;
+  padding-top: 18px;
+
+  border-top: 1px solid #edf0e9;
+}
+
+.it-courses-page .attendance-cancel-button {
+  min-height: 41px;
+  padding: 0 16px;
+
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #70796b;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.it-courses-page .attendance-cancel-button:hover:not(:disabled) {
+  background: #f7f9f5;
+}
+
+.it-courses-page .attendance-save-button {
+  min-height: 41px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 16px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: #65783f;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(73, 91, 43, 0.14);
+}
+
+.it-courses-page .attendance-save-button:hover:not(:disabled) {
+  background: #596b36;
+}
+
+.it-courses-page .attendance-save-button:disabled,
+.it-courses-page .attendance-cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.it-courses-page .attendance-button-spinner {
+  width: 13px;
+  height: 13px;
+
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+
+  border-radius: 50%;
+
+  animation: itc-spin 0.7s linear infinite;
+}
+
+/* =========================================
+   DELETE MODAL
+========================================= */
+
+.it-courses-page .attendance-delete-modal {
+  width: min(390px, 100%);
+  padding: 29px;
+
+  border-radius: 16px;
+  background: #ffffff;
+
+  text-align: center;
+
+  box-shadow: 0 25px 70px rgba(20, 30, 15, 0.2);
+}
+
+.it-courses-page .attendance-delete-icon {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+
+  border-radius: 13px;
+
+  background: #f8ece7;
+  color: #a06f5e;
+
+  font-size: 20px;
+}
+
+.it-courses-page .attendance-delete-modal h2 {
+  margin-top: 16px;
+
+  color: #35412f;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.it-courses-page .attendance-delete-modal p {
+  margin-top: 8px;
+
+  color: #929b8c;
+
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.it-courses-page .attendance-delete-modal p strong {
+  color: #5d6758;
+}
+
+.it-courses-page .attendance-delete-actions {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+
+  margin-top: 21px;
+}
+
+.it-courses-page .attendance-delete-actions button {
+  min-height: 39px;
+  padding: 0 15px;
+
+  border: 0;
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.it-courses-page .attendance-delete-actions button:first-child {
+  border: 1px solid #dfe5d9;
+
+  background: #ffffff;
+  color: #70796b;
+}
+
+.it-courses-page .attendance-delete-actions button:first-child:hover:not(:disabled) {
+  background: #f7f9f5;
+}
+
+.it-courses-page .attendance-delete-actions button:last-child {
+  background: #a06f5e;
+  color: #ffffff;
+}
+
+.it-courses-page .attendance-delete-actions button:last-child:hover:not(:disabled) {
+  background: #915f4e;
+}
+
+.it-courses-page .attendance-delete-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   RESPONSIVE — 1100px
+========================================= */
+
+@media (max-width: 1100px) {
+  .it-courses-page .attendance-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .it-courses-page .attendance-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .it-courses-page .attendance-search {
+    width: 100%;
+  }
+
+  .it-courses-page .attendance-stat-card strong {
+    font-size: 19px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE — 900px
+========================================= */
+
+@media (max-width: 900px) {
+  .it-courses-page .attendance-main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .it-courses-page .attendance-mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+
+    display: block;
+
+    background: rgba(30, 40, 20, 0.35);
+  }
+}
+
+/* =========================================
+   RESPONSIVE — 650px
+========================================= */
+
+@media (max-width: 650px) {
+  .it-courses-page .attendance-content {
+    padding: 22px 15px;
+  }
+
+  .it-courses-page .attendance-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .it-courses-page .attendance-page-header h1 {
+    font-size: 28px;
+  }
+
+  .it-courses-page .attendance-page-header p {
+    font-size: 13px;
+  }
+
+  .it-courses-page .attendance-add-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .it-courses-page .attendance-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .it-courses-page .attendance-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .it-courses-page .attendance-form-full {
+    grid-column: auto;
+  }
+
+  .it-courses-page .attendance-modal-overlay {
+    padding: 10px;
+  }
+
+  .it-courses-page .attendance-modal {
+    max-height: 94vh;
+  }
+
+  .it-courses-page .attendance-form {
+    padding: 19px;
+  }
+
+  .it-courses-page .attendance-modal-header {
+    padding: 19px;
+  }
+
+  .it-courses-page .attendance-pagination {
+    flex-direction: column;
+  }
+
+  .it-courses-page .attendance-pagination > div {
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* =========================================
+   IT COURSES — TABS + STUDENTS + LEDGER
+========================================= */
+
+/* Tabs */
+.it-courses-page .itc-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 20px;
+  border-radius: 9px;
+  background: #f1f4ed;
+}
+
+.it-courses-page .itc-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #879080;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.it-courses-page .itc-tabs button.active {
+  background: #65783f;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(73, 91, 43, 0.2);
+}
+
+/* Notice (pending complete) */
+.it-courses-page .itc-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px 15px;
+  border: 1px solid #eadfce;
+  border-radius: 10px;
+  background: #faf7ef;
+  color: #947b55;
+  font-size: 12px;
+}
+
+.it-courses-page .itc-notice svg {
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+/* Enrolled count */
+.itc-enrolled-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #edf2e6;
+  color: #607542;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Badges */
+.itc-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.itc-active { background: #edf2e6; color: #607542; }
+.itc-completed { background: #e4ead8; color: #596b36; }
+.itc-pending { background: #faf0dc; color: #a3752c; }
+
+.itc-fee-paid { background: #edf2e6; color: #607542; }
+.itc-fee-partial { background: #faf0dc; color: #a3752c; }
+.itc-fee-unpaid { background: #f8efeb; color: #a06f5e; }
+
+/* Progress bar */
+.itc-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.itc-progress {
+  width: 120px;
+  height: 7px;
+  border-radius: 99px;
+  background: #e7ebe3;
+  overflow: hidden;
+}
+
+.itc-progress span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: #65783f;
+  transition: width 0.3s ease;
+}
+
+.itc-progress-text {
+  color: #9aa293;
+  font-size: 10px;
+}
+
+/* End date cell */
+.itc-enddate-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.itc-enddate-cell strong {
+  color: #35412f;
+  font-size: 12px;
+}
+
+.itc-enddate-cell span {
+  color: #9aa293;
+  font-size: 10px;
+}
+
+/* Fee cell */
+.itc-fee-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.itc-fee-cell > strong {
+  color: #35412f;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* Pending row highlight */
+.it-courses-page .itc-students-table .itc-row-pending {
+  background: #fdfaf2;
+}
+
+.it-courses-page .itc-students-table .itc-row-pending:hover {
+  background: #faf5e8;
+}
+
+/* Complete button (row action) */
+.it-courses-page .itc-complete-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 7px;
+  background: #faf0dc;
+  color: #a3752c;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.it-courses-page .itc-complete-button:hover {
+  background: #f3e4c4;
+}
+
+/* Detail modal */
+.it-courses-page .itc-detail-modal {
+  width: min(780px, 100%);
+}
+
+.it-courses-page .itc-detail-body {
+  padding: 23px 25px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.itc-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.itc-info-grid > div {
+  padding: 10px 13px;
+  border: 1px solid #edf0e9;
+  border-radius: 10px;
+  background: #fafbf8;
+}
+
+.itc-info-grid span {
+  display: block;
+  margin-bottom: 4px;
+  color: #8b9486;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.itc-info-grid strong {
+  color: #35412f;
+  font-size: 12px;
+}
+
+.itc-detail-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.itc-detail-progress .itc-progress {
+  flex: 1;
+  width: auto;
+}
+
+.itc-detail-progress > span {
+  color: #879080;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* Status actions */
+.itc-status-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.itc-mark-complete {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #65783f;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(73, 91, 43, 0.14);
+  transition: background 0.2s ease;
+}
+
+.itc-mark-complete:hover {
+  background: #596b36;
+}
+
+.itc-reopen {
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #70796b;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 9px 14px;
+  cursor: pointer;
+}
+
+.itc-reopen:hover {
+  background: #f7f9f5;
+}
+
+/* Fee cards */
+.itc-fee-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.itc-fee-cards > div {
+  padding: 12px 14px;
+  border: 1px solid #edf0e9;
+  border-radius: 10px;
+  background: #fafbf8;
+}
+
+.itc-fee-cards span {
+  display: block;
+  margin-bottom: 4px;
+  color: #8b9486;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.itc-fee-cards strong {
+  color: #35412f;
+  font-size: 15px;
+}
+
+.itc-fee-cards .itc-green { color: #596b36; }
+.itc-fee-cards .itc-red { color: #a06f5e; }
+
+/* Payment section */
+.itc-section-title {
+  display: block;
+  margin-bottom: 10px;
+  color: #596354;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.itc-pay-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.itc-pay-form .attendance-form-group {
+  gap: 5px;
+}
+
+.itc-pay-form .attendance-form-group input {
+  height: 40px;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid #dfe5d9;
+  border-radius: 8px;
+  outline: none;
+  background: #fbfcfa;
+  color: #35412f;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.itc-pay-form .attendance-form-group input:focus {
+  border-color: #9aa982;
+  box-shadow: 0 0 0 3px rgba(101, 120, 63, 0.08);
+}
+
+.itc-pay-add {
+  height: 40px;
+}
+
+/* Ledger table */
+.itc-ledger-table {
+  min-width: 0 !important;
+}
+
+.itc-ledger-table th {
+  height: 38px;
+  padding: 0 12px;
+}
+
+.itc-ledger-table td {
+  height: auto;
+  padding: 9px 12px;
+}
+
+.itc-ledger-table td:last-child {
+  width: 40px;
+}
+
+/* No payments */
+.itc-no-payments {
+  padding: 18px;
+  border: 1px dashed #dfe5d9;
+  border-radius: 10px;
+  text-align: center;
+  color: #9aa293;
+  font-size: 12px;
+}
+
+/* Readonly end date input */
+.itc-readonly-input {
+  background: #f1f4ed !important;
+  color: #596354 !important;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .itc-info-grid,
+  .itc-fee-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .itc-pay-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .itc-info-grid,
+  .itc-fee-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .itc-pay-form {
+    grid-template-columns: 1fr;
+  }
+
+  .it-courses-page .itc-tabs {
+    width: 100%;
+  }
+
+  .it-courses-page .itc-tabs button {
+    flex: 1;
+    justify-content: center;
+  }
+}
