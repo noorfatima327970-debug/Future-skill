@@ -46,14 +46,55 @@ app.use(
 app.use(cookieParser());
 
 /* =========================================
+   DATABASE CONNECTION
+========================================= */
+
+let dbPromise;
+
+async function connectDB() {
+  if (!dbPromise) {
+    dbPromise = (async () => {
+      if (!process.env.MONGO_URI) {
+        throw new Error("MONGO_URI is missing");
+      }
+
+      await mongoose.connect(process.env.MONGO_URI);
+
+      console.log("MongoDB connected successfully.");
+
+      await syncPrimaryAdmin();
+    })().catch((error) => {
+      dbPromise = null;
+      throw error;
+    });
+  }
+
+  return dbPromise;
+}
+
+// Routes chalne se pehle database connect hoga
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error("Backend startup failed:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Database connection failed",
+    });
+  }
+});
+
+/* =========================================
    ROOT API
 ========================================= */
 
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message:
-      "Future Skill School Management API is running",
+    message: "Future Skill School Management API is running",
   });
 });
 
@@ -180,25 +221,13 @@ async function syncPrimaryAdmin() {
 
   const password = process.env.ADMIN_PASSWORD;
 
-  /*
-    Default false rakhein.
-
-    Sirf jab password bhool jayein aur .env
-    se reset karna ho tab true karein.
-  */
   const shouldResetPassword =
-    process.env.RESET_PRIMARY_ADMIN_PASSWORD ===
-    "true";
+    process.env.RESET_PRIMARY_ADMIN_PASSWORD === "true";
 
   let primaryAdmin = await Admin.findOne({
     isPrimaryAdmin: true,
   });
 
-  /*
-    Agar primary admin already maujood hai,
-    to restart/deployment par password change
-    nahi hoga.
-  */
   if (primaryAdmin) {
     if (shouldResetPassword) {
       if (!password || password.length < 6) {
@@ -215,7 +244,7 @@ async function syncPrimaryAdmin() {
       await primaryAdmin.save();
 
       console.log(
-        "Primary admin password reset successfully from .env."
+        "Primary admin password reset successfully from env."
       );
     } else {
       console.log(
@@ -226,13 +255,9 @@ async function syncPrimaryAdmin() {
     return;
   }
 
-  /*
-    First time primary admin create karne ke liye
-    env values required hain.
-  */
   if (!name || !email || !password) {
     throw new Error(
-      "ADMIN_NAME, ADMIN_EMAIL and ADMIN_PASSWORD must be set in .env"
+      "ADMIN_NAME, ADMIN_EMAIL and ADMIN_PASSWORD must be set"
     );
   }
 
@@ -242,11 +267,6 @@ async function syncPrimaryAdmin() {
     );
   }
 
-  /*
-    Agar isi email ka koi admin already hai
-    lekin primary nahi hai to usko primary
-    admin bana dein.
-  */
   const existingAdmin = await Admin.findOne({
     email,
   });
@@ -273,10 +293,6 @@ async function syncPrimaryAdmin() {
     return;
   }
 
-  /*
-    Agar koi admin nahi mila to new primary
-    admin create hoga.
-  */
   await Admin.create({
     name,
     email,
@@ -303,40 +319,18 @@ app.use((req, res) => {
 });
 
 /* =========================================
-   START SERVER
+   EXPORT AND LOCAL SERVER
 ========================================= */
 
-const PORT = process.env.PORT || 5000;
+module.exports = app;
 
-async function startServer() {
-  try {
-    if (!process.env.MONGO_URI) {
-      throw new Error(
-        "MONGO_URI is missing from the .env file"
-      );
-    }
+// Sirf local run par listen karega
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
 
-    await mongoose.connect(process.env.MONGO_URI);
-
+  app.listen(PORT, () => {
     console.log(
-      "MongoDB connected successfully."
+      `Server running on http://localhost:${PORT}`
     );
-
-    await syncPrimaryAdmin();
-
-    app.listen(PORT, () => {
-      console.log(
-        `Server running on http://localhost:${PORT}`
-      );
-    });
-  } catch (error) {
-    console.error(
-      "Backend startup failed:",
-      error.message
-    );
-
-    process.exit(1);
-  }
+  });
 }
-
-startServer();
